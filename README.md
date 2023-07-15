@@ -2,6 +2,13 @@
 
 [![Build Status](https://travis-ci.org/senny/pdfjs_viewer-rails.svg?branch=master)](https://travis-ci.org/senny/pdfjs_viewer-rails)
 
+## Introduction
+This gem was forked from the latest [pdfjs_viewer-rails](https://github.com/senny/pdfjs_viewer-rails) `master` and applies the fix in
+[PR](https://github.com/senny/pdfjs_viewer-rails/pull/16) by @MattFenelon.
+
+A more configurable fix is mentioned in [PR](https://github.com/senny/pdfjs_viewer-rails/pull/20) where you can configure
+a list of externally host origins, but that was never merged.
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -141,6 +148,16 @@ tested on S3:
     </CORSRule>
 </CORSConfiguration>
 ```
+
+### Cross-origin checks
+
+To enable loading of PDFs at remote hosts, the following configuration option must be set in an initialiser:
+
+  ```ruby
+  PdfjsViewer.hosted_viewer_origins = ["http://yourhost.com", "https://yourhost.com"]
+  ```
+
+Replacing `yourhost.com` for your own domain. CORS headers must still be set correctly on the remote host.
 
 ## Development
 
